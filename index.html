@@ -18,6 +18,8 @@
   --purple2: #6b10cc;
   --pink: #e040fb;
   --cyan: #00d4ff;
+  --blue: #2f7bff;
+  --violet: #7b2cff;
   --white: #eeeeff;
   --muted: #5a5a8a;
   --border: rgba(160,32,255,.22);
@@ -175,15 +177,30 @@ nav {
 /* notice bar */
 .notice {
   margin-top: 1.8rem; position: relative; z-index: 2;
-  display: inline-flex; align-items: center; gap: .7rem;
-  padding: .55rem 1.4rem;
-  background: rgba(160,32,255,.08);
-  border: 1px solid rgba(160,32,255,.3);
-  border-radius: 40px;
-  font-family: 'Share Tech Mono', monospace; font-size: .72rem; letter-spacing: .1em; color: var(--pink);
-  animation: fadeup .8s ease .3s both;
+  display: inline-flex; align-items: center; justify-content: center; gap: .8rem;
+  padding: .85rem 1.85rem;
+  max-width: min(94vw, 940px);
+  background: linear-gradient(135deg, rgba(47,123,255,.12), rgba(123,44,255,.12));
+  border: 1px solid rgba(0,212,255,.34);
+  border-radius: 999px;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: clamp(1rem, 2.25vw, 1.35rem); line-height: 1.15;
+  letter-spacing: .045em; color: #f7f7ff;
+  text-shadow: 0 0 18px rgba(0,212,255,.35);
+  box-shadow: 0 0 35px rgba(0,212,255,.10), inset 0 0 24px rgba(160,32,255,.08);
+  white-space: nowrap;
+  animation: fadeup .8s ease .3s both, noticeFloat 4s ease-in-out 1.2s infinite;
 }
-.notice-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 8px var(--pink); animation: blink 1.5s infinite; }
+.notice strong {
+  color: var(--cyan);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.15em;
+  letter-spacing: .06em;
+  text-shadow: 0 0 20px rgba(0,212,255,.65);
+}
+.notice-dot { width: 9px; height: 9px; flex:0 0 auto; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan), 0 0 22px rgba(0,212,255,.65); animation: blink 1.5s infinite; }
+@keyframes noticeFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-3px);} }
+@media (max-width: 620px) { .notice { white-space: normal; border-radius: 24px; } }
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.2;} }
 
 /* hero CTA */
@@ -253,20 +270,33 @@ nav {
 /* ─── HUB CARD ─── */
 .hub-card {
   position: relative;
-  background: var(--card);
+  background: linear-gradient(180deg, rgba(13,13,32,.96), rgba(6,6,16,.98));
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
   display: block;
-  transition: all .4s cubic-bezier(.2,.8,.2,1);
+  min-height: 390px;
+  isolation: isolate;
+  transition: transform .42s cubic-bezier(.2,.8,.2,1), border-color .32s, box-shadow .32s, filter .32s;
 }
 .hub-card::before {
   content: '';
   position: absolute; inset: 0;
   opacity: 0; transition: opacity .4s;
-  background: radial-gradient(ellipse at 30% 30%, rgba(160,32,255,.1), transparent 60%);
+  background: radial-gradient(ellipse at 30% 30%, rgba(0,212,255,.10), transparent 58%),
+              radial-gradient(ellipse at 70% 15%, rgba(160,32,255,.12), transparent 55%);
+  z-index: -1;
+}
+.hub-card::after {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 45%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform .7s ease;
+  pointer-events: none;
 }
 .hub-card:hover {
   transform: translateY(-10px) scale(1.01);
@@ -274,6 +304,7 @@ nav {
   box-shadow: 0 0 50px rgba(160,32,255,.25), 0 30px 70px rgba(0,0,0,.6);
 }
 .hub-card:hover::before { opacity: 1; }
+.hub-card:hover::after { transform: translateX(120%); }
 
 /* swirl container */
 .card-visual {
@@ -282,6 +313,13 @@ nav {
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
   background: radial-gradient(ellipse at center, #0c0c22 0%, #050510 100%);
+}
+.card-visual::before {
+  content: '';
+  position: absolute; inset: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.045);
+  background: linear-gradient(135deg, rgba(255,255,255,.025), transparent 45%);
 }
 
 /* animated electric rings */
@@ -316,18 +354,19 @@ nav {
 /* PERFECT card rings */
 .card-perfect .ring:nth-child(1) {
   width: 200px; height: 200px;
-  border-color: rgba(224,64,251,.7);
-  box-shadow: 0 0 25px rgba(224,64,251,.5), inset 0 0 20px rgba(224,64,251,.1);
+  border-color: rgba(47,123,255,.72);
+  box-shadow: 0 0 25px rgba(47,123,255,.48), inset 0 0 20px rgba(47,123,255,.10);
   animation: ringSpin 3.5s linear infinite;
 }
 .card-perfect .ring:nth-child(2) {
   width: 155px; height: 155px;
-  border-color: rgba(130,0,220,.5);
+  border-color: rgba(123,44,255,.55);
+  box-shadow: 0 0 16px rgba(123,44,255,.32);
   animation: ringSpin 5s linear infinite reverse;
 }
 .card-perfect .ring:nth-child(3) {
   width: 248px; height: 248px;
-  border-color: rgba(160,32,255,.2);
+  border-color: rgba(0,212,255,.22);
   border-width: 1px;
   animation: ringSpin 9s linear infinite;
 }
@@ -395,22 +434,23 @@ nav {
 .hub-card:hover .card-label { transform: scale(1.08); }
 
 .card-void .card-label { color: var(--purple); filter: drop-shadow(0 0 20px rgba(160,32,255,.8)); }
-.card-perfect .card-label { color: var(--pink); filter: drop-shadow(0 0 20px rgba(224,64,251,.8)); }
+.card-perfect .card-label { color: var(--blue); filter: drop-shadow(0 0 20px rgba(47,123,255,.85)); }
 .card-dh .card-label { color: var(--purple); filter: drop-shadow(0 0 20px rgba(160,32,255,.8)); }
 .card-discord .card-label { color: #8892f0; filter: drop-shadow(0 0 20px rgba(88,101,242,.8)); }
 
 /* card footer */
 .card-footer {
-  padding: 1.4rem 1.6rem;
-  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.45rem 1.65rem 1.55rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 110px;
 }
 .card-name {
   font-family: 'Orbitron', sans-serif; font-weight: 700;
-  font-size: .95rem; letter-spacing: .08em; color: #fff;
+  font-size: 1.02rem; letter-spacing: .08em; color: #fff;
 }
 .card-sub {
-  font-size: .82rem; color: var(--muted); margin-top: .25rem;
-  font-weight: 300; letter-spacing: .05em;
+  font-size: .9rem; color: #8f90bc; margin-top: .35rem;
+  font-weight: 400; letter-spacing: .045em; line-height: 1.25;
 }
 .card-arrow-btn {
   width: 40px; height: 40px; border-radius: 50%;
@@ -426,12 +466,18 @@ nav {
 .card-arrow-btn svg { transition: transform .28s; }
 .hub-card:hover .card-arrow-btn svg { transform: translate(2px,-2px); }
 
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+.hub-card:hover .card-name { color: var(--cyan); text-shadow: 0 0 14px rgba(0,212,255,.35); }
+.card-perfect:hover { border-color: var(--blue); box-shadow: 0 0 50px rgba(47,123,255,.24), 0 30px 70px rgba(0,0,0,.6); }
+.card-perfect:hover .card-arrow-btn { background: linear-gradient(135deg, var(--blue), var(--violet)); border-color: var(--blue); box-shadow: 0 0 28px rgba(47,123,255,.45); }
+
 /* top glow bar */
 .card-topbar {
   position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 3;
 }
 .card-void .card-topbar { background: linear-gradient(90deg, var(--purple), var(--cyan)); }
-.card-perfect .card-topbar { background: linear-gradient(90deg, var(--pink), var(--purple)); }
+.card-perfect .card-topbar { background: linear-gradient(90deg, var(--blue), var(--violet), var(--cyan)); }
 .card-dh .card-topbar { background: linear-gradient(90deg, var(--cyan), var(--purple)); }
 .card-discord .card-topbar { background: linear-gradient(90deg, #5865f2, #8892f0); }
 
@@ -560,7 +606,7 @@ footer p { color: var(--muted); font-size: .8rem; }
   <p class="hero-tagline">Acesso a <strong>múltiplos softwares</strong> de alta performance em um só lugar.</p>
   <div class="notice">
     <span class="notice-dot"></span>
-    Plano de 2 meses com recursos básicos — R$ 15 já disponível no launcher
+    Plano de 2 meses com recursos básicos — <strong>R$ 5</strong> já disponível no launcher
   </div>
   <div class="hero-ctas">
     <button class="btn-glow" onclick="document.getElementById('download').scrollIntoView({behavior:'smooth'})">
@@ -616,7 +662,7 @@ footer p { color: var(--muted); font-size: .8rem; }
       <div class="card-footer">
         <div>
           <div class="card-name">Perfect CS2</div>
-          <div class="card-sub">Melhoria Perfect — perfect-dun.vercel.app</div>
+          <div class="card-sub">Melhoria Perfect — visual azul/roxo</div>
         </div>
         <div class="card-arrow-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -709,7 +755,7 @@ footer p { color: var(--muted); font-size: .8rem; }
     <h2 class="dl-title">Baixar Void Hybrid Launcher</h2>
     <p class="dl-sub">
       O launcher central para gerenciar seus acessos.<br>
-      <strong>Plano de 2 meses com recursos básicos por R$ 15</strong> já disponível diretamente pelo launcher.
+      <strong>Plano de 2 meses com recursos básicos por R$ 5</strong> já disponível diretamente pelo launcher.
     </p>
     <a class="btn-download" href="Void_Hybrid.zip" download="Void_Hybrid.zip">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
