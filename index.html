@@ -246,7 +246,7 @@ nav {
   font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: .08em; color: #fff;
 }
 .sec-title span {
-  background: linear-gradient(90deg, var(--purple), var(--pink));
+  background: linear-gradient(90deg, var(--red), var(--blue));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 .sec-rule {
@@ -403,18 +403,21 @@ nav {
 }
 .card-discord .ring:nth-child(2) {
   width: 155px; height: 155px;
-  border-color: rgba(120,130,255,.65);
-  box-shadow: 0 0 16px rgba(120,130,255,.35);
+  border-color: rgba(255,36,67,.22);
+  box-shadow: 0 0 40px rgba(255,36,67,.06);
+  animation: hringSpin 12s linear infinite;
   animation: ringSpin 8s linear infinite reverse;
 }
-.card-discord .ring:nth-child(3) {
-  width: 248px; height: 248px;
-  border-color: rgba(88,101,242,.22);
+  inset: 60px;
+  border-color: rgba(0,195,255,.16);
+  box-shadow: 0 0 36px rgba(0,195,255,.08);
+  animation: hringSpin 18s linear infinite reverse;
   border-width: 1px;
   box-shadow: 0 0 12px rgba(88,101,242,.12);
-  animation: ringSpin 12s linear infinite;
-}
-
+  inset: 120px;
+  border-color: rgba(255,36,67,.14);
+  box-shadow: 0 0 24px rgba(255,36,67,.06);
+  animation: hringSpin 8s linear infinite;
 @keyframes ringSpin { to { transform: rotate(360deg); } }
 
 /* lightning arcs on rings */
@@ -487,11 +490,32 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-
 /* top glow bar */
 .card-topbar {
   position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 3;
+  background: linear-gradient(90deg, var(--red), var(--blue));
 }
-.card-void .card-topbar { background: linear-gradient(90deg, var(--purple), var(--cyan)); }
-.card-perfect .card-topbar { background: linear-gradient(90deg, var(--blue), var(--violet), var(--cyan)); }
-.card-dh .card-topbar { background: linear-gradient(90deg, var(--cyan), var(--purple)); }
-.card-discord .card-topbar { background: linear-gradient(90deg, #5865f2, #8892f0); }
+
+/* Override: unify rings to red/blue theme */
+.hub-card .ring:nth-child(1) {
+  border-color: rgba(255,36,67,.95);
+  box-shadow: 0 0 26px rgba(255,36,67,.45), 0 0 42px rgba(0,195,255,.08);
+}
+.hub-card .ring:nth-child(2) {
+  border-color: rgba(0,195,255,.95);
+  box-shadow: 0 0 22px rgba(0,195,255,.45), 0 0 40px rgba(255,36,67,.08);
+}
+.hub-card .ring:nth-child(3) {
+  border-color: rgba(255,36,67,.6);
+  border-width: 1px;
+  box-shadow: 0 0 18px rgba(255,36,67,.28), inset 0 0 12px rgba(0,0,0,.35);
+}
+
+/* ring dot markers: red / blue gradients */
+.hub-card .ring::after { background: radial-gradient(circle, rgba(255,36,67,1), rgba(255,120,130,.5)); box-shadow: 0 0 10px rgba(255,36,67,.9); }
+.hub-card .ring:nth-child(2)::after { background: radial-gradient(circle, rgba(0,195,255,1), rgba(120,210,255,.5)); box-shadow: 0 0 10px rgba(0,195,255,.85); }
+.hub-card .ring:nth-child(3)::after { background: radial-gradient(circle, rgba(255,36,67,.6), rgba(0,195,255,.45)); box-shadow: 0 0 8px rgba(255,36,67,.6); }
+.hub-card .ring { color: transparent !important; }
+
+@keyframes ringGlow { 0% { filter: drop-shadow(0 0 10px rgba(255,36,67,.25)) drop-shadow(0 0 20px rgba(0,195,255,.12)); transform: scale(1);} 50% { filter: drop-shadow(0 0 26px rgba(255,36,67,.45)) drop-shadow(0 0 36px rgba(0,195,255,.22)); transform: scale(1.01);} 100% { filter: drop-shadow(0 0 10px rgba(255,36,67,.25)) drop-shadow(0 0 20px rgba(0,195,255,.12)); transform: scale(1);} }
+.hub-card .ring { animation: ringGlow 6s ease-in-out infinite; }
 
 /* ─── DOWNLOAD SECTION ─── */
 .download-section {
