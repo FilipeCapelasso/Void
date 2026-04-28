@@ -568,6 +568,32 @@ footer p { color: var(--muted); font-size: .8rem; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--purple2); border-radius: 3px; }
 </style>
+
+<!-- Designer overrides imported from the other site: fonts, gradients, contrast -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--font-sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--font-display:'Poppins','Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--designer-red:#ff2443;--designer-blue:#00c3ff;--designer-gold:#f0b429;--designer-text:#ddddf0;--designer-muted:#aeb4d6}
+
+html,body,body *{font-family:var(--font-sans) !important;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4,h5,h6,.nav-logo-text,.hero-wordmark,.card-label,.card-name,.sec-title,.footer-logo{font-family:var(--font-display) !important;font-weight:600 !important}
+
+.nav-logo-text{background:linear-gradient(90deg,var(--designer-blue),var(--designer-red));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-wordmark .void{background:linear-gradient(135deg,#fff 10%,var(--designer-blue) 50%,var(--designer-red) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 36px rgba(0,195,255,.28));display:block}
+.hero-wordmark .hybrid{background:linear-gradient(90deg,var(--designer-red),var(--designer-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;font-size:.45em;letter-spacing:.45em;margin-top:.15em}
+
+.hero-tagline,.card-sub,.dl-sub,.footer-links a,.nav-link{color:var(--designer-muted) !important;opacity:0.96}
+.notice{background:linear-gradient(135deg,rgba(0,195,255,.08),rgba(255,36,67,.06));border:1px solid rgba(255,36,67,.12);color:#f0f0f8}
+.btn-glow{background:linear-gradient(135deg,var(--designer-red),var(--designer-red));box-shadow:0 0 25px rgba(255,36,67,.18)}
+.btn-outline{border-color:var(--designer-blue);color:var(--designer-blue)}
+.card-topbar{background:linear-gradient(90deg,var(--designer-red),var(--designer-blue)) !important}
+.footer-logo{background:linear-gradient(90deg,var(--designer-blue),var(--designer-red));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-eyebrow{color:var(--designer-blue) !important}
+a.nav-link{color:var(--designer-muted) !important}
+.card-name{font-family:var(--font-display) !important}
+.card-sub{color:var(--designer-muted) !important}
+</style>
 </head>
 <body>
 
